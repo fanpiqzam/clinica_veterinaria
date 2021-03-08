@@ -1,0 +1,96 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="clinica_veterinaria.veterinario_tree">
+      <field name="name">Veterinarios</field>
+      <field name="model">clinica_veterinaria.vet_model</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="nombre"/>
+          <field name="apellidos"/>
+          <field name="telefono"/>
+          <field name="email"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.veterinario_form">
+      <field name="name">Formulario veterinario</field>
+      <field name="model">clinica_veterinaria.vet_model</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group string="Datos Personales" >              
+              <group>
+                <h2><field name="apellidos" placeholder="Apellidos"/>, <field name="nombre" placeholder="Nombre"/></h2>
+                <!--<label for="name" class="oe_edit_only"/>-->
+                <newline></newline>
+                <h1><field name="name" placeholder="DNI"/></h1>   
+                <field name="telefono" placeholder="Telefono"/>
+                <field name="email" placeholder="E-mail"/>
+                <field name="clinica"/>           
+              </group>
+              <group>
+                <field string="" name="foto" widget="image" style="width: 200px; height: 200px;"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Servicios que atiende">
+                <field name="atienden">
+                  <tree>
+                    <field name="servicio"/>
+                  </tree>
+                  <form>
+                    <field name="servicio"/>
+                  </form>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.veterinario_kanban">
+      <field name="name">Veterinarios</field>
+      <field name="model">clinica_veterinaria.vet_model</field>
+      <field name="arch" type="xml">
+        <kanban class="o_res_partner_kanban">
+          <field name="name"/>
+          <field name="nombre"/>
+          <field name="apellidos"/>
+          <field name="foto"/>
+          <field name="telefono"/>
+          <field name="email"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click">
+                <div class="o_kanban_image">
+                  <field name="foto" nolabel="1" widget="image" class="oe_righ oe_avatar"/>
+                </div>
+                <div class="oe_kanban_details">
+                  <strong>
+                    <field name="name"/> - <field name="apellidos" class="oe_inline"/>, <field name="nombre" class="oe_inline"/>
+                  </strong>
+                  <div t-if="record.telefono.value">
+                    <t t-esc="record.telefono.value"/>
+                  </div>
+                  <div t-if="record.email.value">
+                    <t t-esc="record.email.value"/>
+                  </div>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="clinica_veterinaria.action_window_veterinario">
+      <field name="name">Veterinarios</field>
+      <field name="res_model">clinica_veterinaria.vet_model</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+  </data>
+</odoo>

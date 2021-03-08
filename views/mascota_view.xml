@@ -1,0 +1,65 @@
+<odoo>
+  <data>
+
+    <!--TREE-->
+    <record model="ir.ui.view" id="clinica_veterinaria.mascota_tree">
+      <field name="name">Mascotas</field>
+      <field name="model">clinica_veterinaria.mascota_model</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="numChip"/>
+          <field name="name"/>
+          <field name="peso"/>
+          <field name="especie"/>
+          <field name="cliente"/>
+        </tree>
+      </field>
+    </record>
+
+    <!--FORM-->
+    <record model="ir.ui.view" id="clinica_veterinaria.mascota_form">
+      <field name="name">Formulario mascotas</field>
+      <field name="model">clinica_veterinaria.mascota_model</field>
+      <field name="arch" type="xml">
+        <form string="Paciente">
+          <sheet>
+            <header>
+              <button name="borrarHistorial" 
+                type="object"
+                string="Borrar Historial"
+                class="oe_highlight"
+                confirm="¿Está seguro de querer borrar el historial?"
+                groups="clinica_veterinaria.clinica_vet_group_adm"/>
+            </header>
+            <group>
+              <field name="numChip"/>
+              <field name="name"/>
+              <field name="peso"/>
+              <field name="especie"/>
+              <field name="cliente"/>
+              <field name="visitas"/>
+              <field name="historial"/>
+              <field name="atienden" groups="clinica_veterinaria.clinica_vet_group_adm">
+                <tree>
+                  <field name="veterinario"/>
+                  <field name="servicio"/>
+                </tree>
+                <form>
+                  <field name="veterinario"/>
+                  <field name="servicio"/>
+                </form>
+              </field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="clinica_veterinaria.action_window_mascota">
+      <field name="name">Mascotas</field>
+      <field name="res_model">clinica_veterinaria.mascota_model</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>

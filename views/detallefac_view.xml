@@ -1,0 +1,31 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.detallefac_tree">
+      <field name="name">Detalle factura</field>
+      <field name="model">clinica_veterinaria.detallefac_model</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="servicio"/>
+          <field name="cantidad"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.detallefac_form">
+      <field name="name">Formulario detalle factura</field>
+      <field name="model">clinica_veterinaria.detallefac_model</field>
+      <field name="arch" type="xml">
+        <form string="Detalle factura">
+          <sheet string="Detalle">
+            <group>
+                <field name="servicio"/>
+                <field name="cantidad"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+  </data>
+</odoo>

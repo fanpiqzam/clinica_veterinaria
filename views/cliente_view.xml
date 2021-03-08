@@ -1,0 +1,78 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="clinica_veterinaria.cliente_tree">
+      <field name="name">Clientes</field>
+      <field name="model">clinica_veterinaria.cliente_model</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="nombre"/>
+          <field name="apellidos"/>
+          <field name="telefono"/>
+          <field name="email"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.cliente_form">
+      <field name="name">Formulario cliente</field>
+      <field name="model">clinica_veterinaria.cliente_model</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group string="Datos Personales">
+              <h2><field name="apellidos" placeholder="Apellidos"/>, <field name="nombre" placeholder="Nombre"/></h2>
+              <!--<label for="name" class="oe_edit_only"/>-->
+              <newline></newline>
+              <h1><field name="name" placeholder="DNI"/></h1>   
+            </group>
+            <group>
+              <field name="telefono" placeholder="Telefono"/>
+              <field name="email" placeholder="E-mail"/>
+              <field name="mascota"/>    
+              <field name="factura" groups="clinica_veterinaria.clinica_vet_group_adm"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.cliente_kanban">
+      <field name="name">Clientes</field>
+      <field name="model">clinica_veterinaria.cliente_model</field>
+      <field name="arch" type="xml">
+        <kanban class="o_res_partner_kanban">
+          <field name="name"/>
+          <field name="nombre"/>
+          <field name="apellidos"/>
+          <field name="telefono"/>
+          <field name="email"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click">
+                <div class="oe_kanban_details">
+                  <strong>
+                    <field name="name"/> - <field name="apellidos" class="oe_inline"/>, <field name="nombre" class="oe_inline"/>
+                  </strong>
+                  <div t-if="record.telefono.value">
+                    <t t-esc="record.telefono.value"/>
+                  </div>
+                  <div t-if="record.email.value">
+                    <t t-esc="record.email.value"/>
+                  </div>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="clinica_veterinaria.action_window_cliente">
+      <field name="name">Clientes</field>
+      <field name="res_model">clinica_veterinaria.cliente_model</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+  </data>
+</odoo>

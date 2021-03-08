@@ -1,0 +1,64 @@
+<odoo>
+  <data>
+    <!--SEARCH-->
+    <record model="ir.ui.view" id="clinica_veterinaria.servicios_search">
+      <field name="name">Filtros de servicios</field>
+      <field name="model">clinica_veterinaria.servicios_model</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <filter string="Gravedad Alta" name="Alto" domain="[('gravedad','=','Alto')]"/>
+          <filter string="Gravedad Media" name="Medio" domain="[('gravedad','=','Medio')]"/>
+          <filter string="Gravedad Baja" name="Bajo" domain="[('gravedad','=','Bajo')]"/>
+        </search>
+      </field>
+    </record>
+    
+    <!--TREE-->
+    <record model="ir.ui.view" id="clinica_veterinaria.servicios_tree">
+      <field name="name">Servicios</field>
+      <field name="model">clinica_veterinaria.servicios_model</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="descripcion"/>
+          <field name="gravedad"/>
+          <field name="precio"/>
+        </tree>
+      </field>
+    </record>
+
+    <!--FORM-->
+    <record model="ir.ui.view" id="clinica_veterinaria.servicios_form">
+      <field name="name">Formulario servicios</field>
+      <field name="model">clinica_veterinaria.servicios_model</field>
+      <field name="arch" type="xml">
+        <form string="Servicios">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="descripcion"/>
+              <field name="gravedad"/>
+              <field name="precio"/>
+              <field name="atienden">
+                <tree>
+                  <field name="veterinario"/>
+                </tree>
+                <form>
+                  <field name="veterinario"/>
+                </form>
+              </field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="clinica_veterinaria.action_window_servicios">
+      <field name="name">Servicios</field>
+      <field name="res_model">clinica_veterinaria.servicios_model</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>

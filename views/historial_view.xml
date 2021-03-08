@@ -1,0 +1,71 @@
+<odoo>
+  <data>
+    <!--SEARCH-->
+    <record model="ir.ui.view" id="clinica_veterinaria.historial_search">
+      <field name="name">Filtros de historial</field>
+      <field name="model">clinica_veterinaria.historial_model</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="motivo"/>
+          <filter string="Visitas canceladas" name="canceladas" domain="[('visitaCancelada','=',True)]"/>
+          <filter string="Visitas no canceladas" name="noCanceladas" domain="[('visitaCancelada','=',False)]"/>
+        </search>
+      </field>
+    </record>
+
+    <!--CALENDAR-->
+    <record model="ir.ui.view" id="clinica_veterinaria.historial_calendar">
+      <field name="name">Calendario historial</field>
+      <field name="model">clinica_veterinaria.historial_model</field>
+      <field name="arch" type="xml">
+      <calendar date_start="fecha" color="mascota" event_open_popup="True" mode="month" form_view_id="clinica_veterinaria.historial_form" quick_add="False">
+        <field name="cliente"/>
+        <field name="mascota"/>
+        <field name="fecha"/>
+      </calendar>
+      </field>
+    </record>
+
+    <!--TREE-->
+    <record model="ir.ui.view" id="clinica_veterinaria.historial_tree">
+      <field name="name">Historial</field>
+      <field name="model">clinica_veterinaria.historial_model</field>
+      <field name="arch" type="xml">
+        <tree decoration-success="visitaCancelada==False" decoration-danger="visitaCancelada==True">
+          <field name="cliente"/>
+          <field name="mascota"/>
+          <field name="motivo"/>
+          <field name="fecha"/>
+          <field name="visitaCancelada"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.historial_form">
+      <field name="name">Formulario historial</field>
+      <field name="model">clinica_veterinaria.historial_model</field>
+      <field name="arch" type="xml">
+        <form string="Historial">
+          <sheet>
+          <header>
+          </header>
+            <group>
+              <field name="cliente"/>
+              <field name="mascota"/>
+              <field name="fecha"/>
+              <field name="motivo"/>
+              <field name="visitaCancelada"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="clinica_veterinaria.action_window_historial">
+      <field name="name">Historial</field>
+      <field name="res_model">clinica_veterinaria.historial_model</field>
+      <field name="view_mode">calendar,tree,form</field>
+    </record>
+
+  </data>
+</odoo>

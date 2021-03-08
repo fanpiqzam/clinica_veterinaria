@@ -1,0 +1,37 @@
+<odoo>
+  <data>
+    <!-- Top menu item -->
+    <menuitem name="C. Veterinaria" id="clinica_veterinaria.menu_root"/>
+    <!-- menu categories -->
+
+    <menuitem name="Clinicas" id="clinica_veterinaria.clinica" parent="clinica_veterinaria.menu_root"/>
+    <menuitem name="Veterinarios" id="clinica_veterinaria.veterinario" parent="clinica_veterinaria.menu_root"/>
+    <menuitem name="Mascotas" id="clinica_veterinaria.mascota" parent="clinica_veterinaria.menu_root"/>
+    <menuitem name="Historial" id="clinica_veterinaria.historial" parent="clinica_veterinaria.menu_root"/>
+    <menuitem name="Clientes" id="clinica_veterinaria.cliente" parent="clinica_veterinaria.menu_root"/>
+    <menuitem name="Servicios" id="clinica_veterinaria.servicios" parent="clinica_veterinaria.menu_root"/>
+    <menuitem name="Facturas" id="clinica_veterinaria.facturas" parent="clinica_veterinaria.menu_root"/>
+    
+    <!-- actions -->    
+    <menuitem name="Clinicas" id="clinica_veterinaria.listado_clinicas" parent="clinica_veterinaria.menu_root"
+              action="clinica_veterinaria.action_window_clinica" groups="clinica_veterinaria.clinica_vet_group_emple"/>
+
+    <menuitem name="Veterinarios" id="clinica_veterinaria.listado_veterinarios" parent="clinica_veterinaria.menu_root"
+              action="clinica_veterinaria.action_window_veterinario" groups="clinica_veterinaria.clinica_vet_group_emple"/>
+
+    <menuitem name="Mascotas" id="clinica_veterinaria.listado_mascotas" parent="clinica_veterinaria.menu_root"
+              action="clinica_veterinaria.action_window_mascota" groups="clinica_veterinaria.clinica_vet_group_emple"/>
+
+    <menuitem name="Historial" id="clinica_veterinaria.listado_historial" parent="clinica_veterinaria.menu_root"
+              action="clinica_veterinaria.action_window_historial" groups="clinica_veterinaria.clinica_vet_group_emple"/>
+
+    <menuitem name="Clientes" id="clinica_veterinaria.listado_clientes" parent="clinica_veterinaria.menu_root"
+              action="clinica_veterinaria.action_window_cliente" groups="clinica_veterinaria.clinica_vet_group_emple"/>
+
+    <menuitem name="Servicios" id="clinica_veterinaria.listado_servicios" parent="clinica_veterinaria.menu_root"
+              action="clinica_veterinaria.action_window_servicios" groups="clinica_veterinaria.clinica_vet_group_adm"/>
+
+    <menuitem name="Facturas" id="clinica_veterinaria.listado_facturas" parent="clinica_veterinaria.menu_root"
+              action="clinica_veterinaria.action_window_facturas" groups="clinica_veterinaria.clinica_vet_group_adm"/>
+  </data>
+</odoo>

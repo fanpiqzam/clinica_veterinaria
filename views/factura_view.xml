@@ -1,0 +1,94 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.factura_search">
+      <field name="name">Filtros de factura</field>
+      <field name="model">clinica_veterinaria.factura_model</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <filter string="No Pagadas" name="NoAcabadas" domain="[('is_done','=',False)]"/>
+          <filter string="Pagadas" name="Pagadas" domain="[('is_done','=',True)]"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.pivot_factura">
+      <field name="name">Pivote factura</field>
+      <field name="model">clinica_veterinaria.factura_model</field>
+      <field name="arch" type="xml">
+        <pivot string="Cuadro de facturas">
+          <field name="cliente" type="row"/>
+          <field name="name" type="row"/>
+          <field name="fecha"/>
+          <field name="base"/>
+          <field name="iva"/>
+          <field name="total" type="measure" widget="monetary"/>
+        </pivot>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.graph_factura">
+      <field name="name">Gráfico factura</field>
+      <field name="model">clinica_veterinaria.factura_model</field>
+      <field name="arch" type="xml">
+        <graph string="Facturas pagadas/impagadas" type="pie">
+          <field name="is_done" type="row"/>
+          <field name="fecha" interval="month"/>
+          <field name="total" type="measure" widget="monetary"/>
+        </graph>
+      </field>
+    </record>    
+
+    <record model="ir.ui.view" id="clinica_veterinaria.factura_tree">
+      <field name="name">Listado facturas</field>
+      <field name="model">clinica_veterinaria.factura_model</field>
+      <field name="arch" type="xml">
+        <tree decoration-success="is_done==True" decoration-danger="is_done==False">
+          <field name="name"/>
+          <field name="cliente"/>
+          <field name="fecha"/>
+          <field name="base"/>
+          <field name="iva"/>
+          <field name="total"/>
+          <field name="is_done"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.factura_form">
+      <field name="name">Formulario factura</field>
+      <field name="model">clinica_veterinaria.factura_model</field>
+      <field name="arch" type="xml">
+        <form string="Factura">
+          <sheet string="Factura">
+            <group>
+              <group>
+                <field name="name"/>
+                <field name="cliente"/>
+              </group>
+              <group>
+                <field name="fecha"/>
+              </group>
+            </group>
+            <group>
+              <field name="detalle"/>
+              <field name="base" readonly="1"/>
+              <field name="iva"/>
+              <field name="total" readonly="1"/>
+              <field name="is_done"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="clinica_veterinaria.action_window_facturas">
+      <field name="name">Facturas</field>
+      <field name="res_model">clinica_veterinaria.factura_model</field>
+      <field name="view_mode">tree,form,graph,pivot</field>
+    </record>
+
+  </data>
+</odoo>

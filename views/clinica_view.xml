@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.clinica_tree">
+      <field name="name">Clinicas</field>
+      <field name="model">clinica_veterinaria.clinica_model</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="direccion"/>
+          <field name="localidad"/>
+          <field name="telefono"/>
+          <field name="email"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="clinica_veterinaria.clinica_form">
+      <field name="name">Clinicas</field>
+      <field name="model">clinica_veterinaria.clinica_model</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <label for="name" class="oe_edit_only"/>
+              <h1><field name="name" placeholder="Nombre"/></h1>
+              <field name="direccion" placeholder="Dirección"/>
+              <field name="localidad" placeholder="Localidad"/>
+              <field name="telefono" placeholder="Teléfono"/>
+              <field name="email" placeholder="E-mail"/>
+            </group>
+            <group>
+              <field name="vet"/>
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" help="Seguid aquí las últimas actualizaciones." groups="base.group_user"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="clinica_veterinaria.action_window_clinica">
+      <field name="name">Clinicas</field>
+      <field name="res_model">clinica_veterinaria.clinica_model</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+    <record id="module_clinica_vet_category" model="ir.module.category">
+        <field name="name">Clinica Veterinaria</field>
+    </record>
+    <!-- Clinica User Group -->
+    <record id="clinica_vet_group_adm" model="res.groups">
+        <field name="name">Administrativos</field>
+        <field name="category_id" ref="module_clinica_vet_category"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <!-- Clinica Factultativo Group -->
+    <record id="clinica_vet_group_emple" model="res.groups">
+        <field name="name">Empleados</field>
+        <field name="category_id" ref="module_clinica_vet_category"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+</odoo>
